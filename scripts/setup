@@ -29,8 +29,8 @@ function resolve-target() {
 
   if [[ "$target" == "@local" ]]; then
     echo "${DATA_DIR}/typst/packages/local"
-  elif [[ "$target" == "@preview" ]]; then
-    echo "${DATA_DIR}/typst/packages/preview"
+  elif [[ "$target" == "@pria" ]]; then
+    echo "${DATA_DIR}/typst/packages/pria"
   else
     echo "$target"
   fi

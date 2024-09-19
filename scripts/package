@@ -10,16 +10,16 @@ if (( $# < 1 )) || [[ "${1:-}" == "help" ]]; then
   echo "package TARGET"
   echo ""
   echo "Packages all relevant files into a directory named '<name>/<version>'"
-  echo "at TARGET. If TARGET is set to @local or @preview, the local Typst package"
+  echo "at TARGET. If TARGET is set to @local or @pria, the local Typst package"
   echo "directory will be used so that the package gets installed for local use."
   echo "The name and version are read from 'typst.toml' in the project root."
   echo ""
   echo "Local package prefix: $DATA_DIR/typst/package/local"
-  echo "Local preview package prefix: $DATA_DIR/typst/package/preview"
+  echo "Local pria package prefix: $DATA_DIR/typst/package/pria"
   exit 1
 fi
 
-TARGET="$(resolve-target "${1:?Missing target path, @local or @preview}")"
+TARGET="$(resolve-target "${1:?Missing target path, @local or @pria}")"
 echo "Install dir: $TARGET"
 
 # ignore rules

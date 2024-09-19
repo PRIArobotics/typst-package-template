@@ -30,8 +30,8 @@ package target:
 # install the library with the "@local" prefix
 install: (package "@local")
 
-# install the library with the "@preview" prefix (for pre-release testing)
-install-preview: (package "@preview")
+# install the library with the "@pria" prefix (for pre-release testing)
+install-pria: (package "@pria")
 
 [private]
 remove target:
@@ -40,8 +40,8 @@ remove target:
 # uninstalls the library from the "@local" prefix
 uninstall: (remove "@local")
 
-# uninstalls the library from the "@preview" prefix (for pre-release testing)
-uninstall-preview: (remove "@preview")
+# uninstalls the library from the "@pria" prefix (for pre-release testing)
+uninstall-pria: (remove "@pria")
 
 # run ci suite
 ci: test doc

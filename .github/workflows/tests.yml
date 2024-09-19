@@ -40,7 +40,7 @@ jobs:
           typst-version: ${{ matrix.typst-version.typst }}
 
       - name: Install package locally
-        run: just install-preview
+        run: just install-pria
 
       - name: Run test suite
         run: just test

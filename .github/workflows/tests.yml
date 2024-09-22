@@ -50,8 +50,15 @@ jobs:
         with:
           typst-version: ${{ matrix.typst-version }}
 
+      - name: Setup PRIA package registry
+        uses: ./.github/setup-private-registry/
+        with:
+          repository: PRIArobotics/typst-packages
+          token: ${{ secrets.REGISTRY_TOKEN }}
+          namespace: pria
+
       - name: Install package locally
-        run: just install-preview
+        run: just install-pria
 
       - name: Run test suite
         run: just test

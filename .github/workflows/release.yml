@@ -28,6 +28,13 @@ jobs:
         with:
           typst-version: latest
 
+      - name: Setup PRIA package registry
+        uses: ./.github/setup-private-registry/
+        with:
+          repository: PRIArobotics/typst-packages
+          token: ${{ secrets.REGISTRY_TOKEN }}
+          namespace: pria
+
       - name: Determine and check package metadata
         run: |
           . scripts/setup

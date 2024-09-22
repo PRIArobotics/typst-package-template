@@ -1,0 +1,36 @@
+name: Setup private registry
+description: Install private Typst package registry
+
+inputs:
+  repository:
+    description: The registry repository to check out
+  token:
+    description: >
+      Personal access token (PAT) used to fetch the repository.
+    default: ${{ github.token }}
+  namespace:
+    description: The namespace under which to install the repository, e.g. `foo` for `@foo`
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout package registry
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ inputs.repository }}
+        token: ${{ inputs.token }}
+        path: ${{ inputs.namespace }}-typst-packages
+
+    - name: Move package registry to local package location
+      shell: bash
+      run: |
+        if [[ "$OSTYPE" == "linux"* ]]; then
+          DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}"
+        elif [[ "$OSTYPE" == "darwin"* ]]; then
+          DATA_DIR="$HOME/Library/Application Support"
+        else
+          DATA_DIR="${APPDATA}"
+        fi
+        TARGET="${DATA_DIR}/typst/packages/${{ inputs.namespace }}"
+        mkdir -p "$(dirname "$TARGET")"
+        mv "${{ inputs.namespace }}-typst-packages" "${TARGET}"
